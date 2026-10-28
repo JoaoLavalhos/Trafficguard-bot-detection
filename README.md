@@ -4,7 +4,7 @@ Sistema experimental de **deteccao de automacao e analise de trafego web**, dese
 
 > Projeto de portfolio e laboratorio tecnico. Nao substitui um WAF, anti-DDoS ou solucao comercial de bot management.
 
-Os testes praticos do projeto foram executados em ambiente de hospedagem na Hostinger, com comparacao de fluxos de navegadores reais e trafego automatizado.
+Os testes praticos do projeto foram executados em ambiente de hospedagem na Hostinger, com comparacao de fluxos de navegadores reais e trafego automatizado real. Parte desses testes envolveu acessos observados em fluxos associados ao TikTok, o que permitiu comparar sinais de navegadores comuns com ambientes automatizados que nem sempre se identificavam por `navigator.webdriver`.
 
 ## Principais recursos
 
@@ -98,7 +98,9 @@ Alguns sinais mais invasivos permanecem apenas como codigo experimental ou sao d
 
 ## Experimentos
 
-Durante o desenvolvimento foram comparados fluxos completos, incompletos e ambientes automatizados. Os resultados mostraram que nenhum sinal isolado e confiavel o suficiente para decidir sozinho: inclusive ambientes automatizados podem reportar `navigator.webdriver = false`.
+Durante o desenvolvimento foram comparados fluxos completos, incompletos e acessos automatizados reais, incluindo trafego observado em fluxos associados ao TikTok. Os resultados mostraram que nenhum sinal isolado e confiavel o suficiente para decidir sozinho: inclusive ambientes automatizados podem reportar `navigator.webdriver = false`.
+
+Os testes praticos ajudaram a identificar combinacoes recorrentes envolvendo Audio API, Payment Request, MediaCapabilities, informacoes de rede, memoria reportada, bateria, movimento e servicos locais de depuracao/automacao. Esses sinais sao tratados como evidencias complementares, e nao como prova isolada de bot.
 
 Por isso, o projeto utiliza **combinacao de sinais + score**, e diferencia checks informativos, experimentais e de maior confianca.
 
